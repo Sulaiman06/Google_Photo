@@ -7,7 +7,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mx-auto">
-                <img src="{{ asset('storage/gambar/' . $photo->picture) }}">
+                <img src="https://res.cloudinary.com/dtwzikt2h/image/upload/v1674611280/gambar/{{ $photo->picture }}">
             </div>
         </div>
     </div>

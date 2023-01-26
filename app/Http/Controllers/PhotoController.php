@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
+use Cloudinary\Cloudinary;
 use Carbon\Carbon;
 
 class PhotoController extends Controller
@@ -22,9 +23,18 @@ class PhotoController extends Controller
     }
 
     public function store(Request $request) {
-        $extensi = $request->file('picture')->getClientOriginalExtension();
-        $pictureName = $request->name . '_' . Carbon::now() . '.' . $extensi;
-        $request->file('picture')->storeAs('gambar', $pictureName);
+	$file = $request->file('picture');
+        $pictureName = $request->name . '_' . Carbon::now();
+        $cloudinary = new Cloudinary(
+    	    [
+              	'cloud' => [
+            	    'cloud_name' => 'dtwzikt2h',
+            	    'api_key'    => '996275865326779',
+             	    'api_secret' => 'xD8CoE6NOVGFtuzLU8EYCOPoP3o',
+            	],
+	    ]
+	);
+	$cloudinary->uploadApi()->upload("$file", ['public_id' => "gambar/$pictureName"]);
 
         $request->validate([
             'name' => 'unique:photos',

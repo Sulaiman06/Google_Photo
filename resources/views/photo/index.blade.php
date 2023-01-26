@@ -27,7 +27,7 @@
                     @endif
                     @foreach($photos as $photo)
                         <div class="p-6 bg-white border-b border-gray-200">
-                            <a href="{{ route('photo.show', $photo->id) }}"><img src="{{ asset('storage/gambar/' . $photo->picture) }}" style="width:200px;"></a><br>
+                            <a href="{{ route('photo.show', $photo->id) }}"><img src="https://res.cloudinary.com/dtwzikt2h/image/upload/v1674611280/gambar/{{ $photo->picture }}" style="width:200px;"></a><br>
                             <a href="{{ route('photo.edit', $photo->id) }}" style="color:green;">Edit</a>
                             <form action="/photos/{{$photo->id}}" method="post">
                                 @csrf
